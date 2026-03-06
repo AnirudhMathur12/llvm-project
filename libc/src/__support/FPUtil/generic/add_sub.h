@@ -104,8 +104,15 @@ add_or_sub(InType x, InType y) {
         }
       }
 
+#ifndef LIBC_TYPES_HAS_FLOAT128
+      if constexpr ((cpp::is_same_v<InType, bfloat16> &&
+                     cpp::is_same_v<OutType, bfloat16>) ||
+                    (cpp::is_same_v<InType, SoftFloat128> &&
+                     cpp::is_same_v<OutType, SoftFloat128>)) {
+#else
       if constexpr (cpp::is_same_v<InType, bfloat16> &&
                     cpp::is_same_v<OutType, bfloat16>) {
+#endif
         OutFPBits y_bits(y);
         if constexpr (IsSub)
           y_bits.set_sign(y_bits.sign().negate());

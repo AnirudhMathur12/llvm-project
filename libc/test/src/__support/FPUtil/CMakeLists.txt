@@ -56,6 +56,16 @@ add_fp_unittest(
     libc.src.__support.FPUtil.bfloat16
 )
 
+add_libc_unittest(
+  soft_float128_test
+  SUITE
+    libc-fputil-tests
+  SRCS
+    soft_float128_test.cpp
+  DEPENDS
+    libc.src.__support.FPUtil.SoftFloat128
+)
+
 add_fp_unittest(
   comparison_operations_test
   SUITE

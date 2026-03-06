@@ -35,6 +35,9 @@ public:
 #ifdef LIBC_TYPES_HAS_FLOAT128
                               ,
                               float128
+#else
+                              ,
+                              softfloat128
 #endif
                               ,
                               bfloat16>();

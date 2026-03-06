@@ -44,6 +44,26 @@ add_header_library(
 )
 
 add_header_library(
+    SoftFloat128
+    HDRS
+        SoftFloat128.h
+    DEPENDS
+        libc.hdr.stdint_proxy
+        libc.src.__support.CPP.bit
+        libc.src.__support.CPP.type_traits
+        libc.src.__support.FPUtil.cast
+        libc.src.__support.FPUtil.comparison_operations
+        libc.src.__support.FPUtil.dyadic_float
+        libc.src.__support.FPUtil.generic.add_sub
+        libc.src.__support.FPUtil.generic.div
+        libc.src.__support.FPUtil.generic.mul
+        libc.src.__support.macros.attributes
+        libc.src.__support.macros.config
+        libc.src.__support.macros.properties.types
+        libc.src.__support.uint128
+)
+
+add_header_library(
   fpbits_str
   HDRS
     fpbits_str.h

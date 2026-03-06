@@ -68,4 +68,18 @@ struct BFloat16;
 
 using bfloat16 = LIBC_NAMESPACE::fputil::BFloat16;
 
+// -- SoftFloat128 support ----------------------------------------------------
+
+#ifndef LIBC_TYPES_HAS_FLOAT128
+
+namespace LIBC_NAMESPACE_DECL {
+namespace fputil {
+struct SoftFloat128;
+}
+} // namespace LIBC_NAMESPACE_DECL
+
+using softfloat128 = LIBC_NAMESPACE::fputil::SoftFloat128;
+using float128 = softfloat128;
+
+#endif // LIBC_TYPES_HAS_FLOAT128
 #endif // LLVM_LIBC_SRC___SUPPORT_MACROS_PROPERTIES_TYPES_H

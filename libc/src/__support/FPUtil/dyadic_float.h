@@ -16,6 +16,7 @@
 #include "multiply_add.h"
 #include "rounding_mode.h"
 #include "src/__support/CPP/type_traits.h"
+#include "src/__support/CPP/type_traits/is_same.h"
 #include "src/__support/big_int.h"
 #include "src/__support/macros/config.h"
 #include "src/__support/macros/optimization.h" // LIBC_UNLIKELY
@@ -412,6 +413,9 @@ template <size_t Bits> struct DyadicFloat {
     if constexpr (cpp::is_same_v<T, bfloat16>
 #if defined(LIBC_TYPES_HAS_FLOAT16) && !defined(__LIBC_USE_FLOAT16_CONVERSION)
                   || cpp::is_same_v<T, float16>
+#endif
+#ifndef LIBC_TYPES_HAS_FLOAT128
+                  || cpp::is_same_v<T, SoftFloat128>
 #endif
     )
       return generic_as<T, ShouldSignalExceptions>();

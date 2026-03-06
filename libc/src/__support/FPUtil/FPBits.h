@@ -30,6 +30,8 @@
 namespace LIBC_NAMESPACE_DECL {
 namespace fputil {
 
+struct SoftFloat128;
+
 // The supported floating point types.
 enum class FPType {
   IEEE754_Binary16,
@@ -807,6 +809,9 @@ template <typename T> LIBC_INLINE static constexpr FPType get_fp_type() {
 #endif
 #if defined(LIBC_TYPES_HAS_FLOAT128)
   else if constexpr (cpp::is_same_v<UnqualT, float128>)
+    return FPType::IEEE754_Binary128;
+#else
+  else if constexpr (cpp::is_same_v<UnqualT, SoftFloat128>)
     return FPType::IEEE754_Binary128;
 #endif
   else if constexpr (cpp::is_same_v<UnqualT, bfloat16>)
